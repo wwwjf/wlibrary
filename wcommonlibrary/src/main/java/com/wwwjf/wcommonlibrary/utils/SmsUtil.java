@@ -8,6 +8,9 @@ import android.telephony.SmsManager;
 
 import java.util.ArrayList;
 
+/**
+ * 短信相关工具类
+ */
 public class SmsUtil {
 
     /**
