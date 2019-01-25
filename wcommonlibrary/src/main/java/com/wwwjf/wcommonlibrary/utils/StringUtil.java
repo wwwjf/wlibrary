@@ -18,9 +18,22 @@ public class StringUtil {
      * @return
      */
     public static int compareVersion(String version1, String version2) {
-//        if (version1 == null || version2 == null) {
-//            throw new Exception("compareVersion error:illegal params.");
-//        }
+        if (version1 == null || version2 == null) {
+            try {
+                throw new Exception("版本号不能为空");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+        if (!version1.contains(".") ||!version2.contains(".")){
+            try {
+                throw new Exception("版本号名称不符合规范");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
         String[] versionArray1 = version1.split("\\.");//注意此处为正则匹配，不能用"."；
         String[] versionArray2 = version2.split("\\.");
         int idx = 0;
