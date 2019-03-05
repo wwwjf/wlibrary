@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WCommonLibrary</string>
+    <string name="common_ensure">Determined</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_no_permission_to_open">No permission, whether to open permissions</string>
+</resources>
