@@ -10,6 +10,9 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.Build;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -18,20 +21,18 @@ import android.view.View;
 import com.wwwjf.wcommonlibrary.R;
 import com.wwwjf.wcommonlibrary.common.WConstants;
 import com.wwwjf.wcommonlibrary.widget.CustomDialog;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
- *
+ * 权限申请
  */
 
 public class PermissionManager {
     private static final int REQUEST_PERMISSION_CODE = 1000;
 
-    private Object mContext;
+    private WeakReference<Object> mWeakRef;
 
     private PermissionListener mListener;
 
@@ -42,7 +43,7 @@ public class PermissionManager {
     private boolean needCustomEnsure;
 
     public PermissionManager(@NonNull Object context) {
-        this.mContext = context;
+        mWeakRef = new WeakReference<Object>(context);
     }
 
     /**
@@ -122,12 +123,12 @@ public class PermissionManager {
                                 if (!shouldShowRequestPermissionRationale(permissions)) {
                                     Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                                     // 根据包名打开对应的设置界面
-                                    if (mContext instanceof Activity) {
+                                    if (isWeakNotNull() && mWeakRef.get() instanceof Activity) {
                                         intent.setData(Uri.parse("package:" + context.getPackageName()));
-                                        ((Activity) mContext).startActivityForResult(intent, WConstants.REQUEST_CODE);
-                                    } else if (mContext instanceof Fragment) {
+                                        ((Activity) mWeakRef.get()).startActivityForResult(intent, WConstants.REQUEST_CODE);
+                                    } else if (isWeakNotNull() &&mWeakRef.get() instanceof Fragment) {
                                         intent.setData(Uri.parse("package:" + context.getPackageName()));
-                                        ((Fragment) mContext).startActivityForResult(intent, WConstants.REQUEST_CODE);
+                                        ((Fragment) mWeakRef.get()).startActivityForResult(intent, WConstants.REQUEST_CODE);
                                     }
                                     return;
                                 }
@@ -136,12 +137,12 @@ public class PermissionManager {
                         } else {
                             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                             // 根据包名打开对应的设置界面
-                            if (mContext instanceof Activity) {
+                            if (isWeakNotNull() &&mWeakRef.get() instanceof Activity) {
                                 intent.setData(Uri.parse("package:" + context.getPackageName()));
-                                ((Activity) mContext).startActivityForResult(intent, WConstants.REQUEST_CODE);
-                            } else if (mContext instanceof Fragment) {
+                                ((Activity) mWeakRef.get()).startActivityForResult(intent, WConstants.REQUEST_CODE);
+                            } else if (isWeakNotNull() &&mWeakRef.get() instanceof Fragment) {
                                 intent.setData(Uri.parse("package:" + context.getPackageName()));
-                                ((Fragment) mContext).startActivityForResult(intent, WConstants.REQUEST_CODE);
+                                ((Fragment) mWeakRef.get()).startActivityForResult(intent, WConstants.REQUEST_CODE);
                             }
                         }
                     }, v -> {
@@ -150,6 +151,10 @@ public class PermissionManager {
                     });
                 }
         }
+    }
+
+    private boolean isWeakNotNull() {
+        return mWeakRef != null && mWeakRef.get() != null;
     }
 
     /**
@@ -176,20 +181,23 @@ public class PermissionManager {
 
 
         int cameraOp = -1;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !"".equals(MUIPermission)) {
-            if (mContext instanceof Activity) {
-                appOpsManager = (AppOpsManager) ((Activity) mContext).getSystemService(Context.APP_OPS_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && !"".equals(MUIPermission)) {
+            if (isWeakNotNull() &&mWeakRef.get() instanceof Activity) {
+                appOpsManager = (AppOpsManager) ((Activity) mWeakRef.get()).getSystemService(Context.APP_OPS_SERVICE);
                 assert appOpsManager != null;
-                cameraOp = appOpsManager.checkOp(MUIPermission, Binder.getCallingUid(), ((Activity) mContext).getPackageName());
-            } else if (mContext instanceof Fragment) {
-                FragmentActivity activity = ((Fragment) mContext).getActivity();
+                cameraOp = appOpsManager.checkOp(MUIPermission, Binder.getCallingUid(), ((Activity) mWeakRef.get()).getPackageName());
+            } else if (isWeakNotNull() &&mWeakRef.get() instanceof Fragment) {
+                FragmentActivity activity = ((Fragment) mWeakRef.get()).getActivity();
                 if (activity != null)
                     appOpsManager = (AppOpsManager) activity.getSystemService(Context.APP_OPS_SERVICE);
                 assert appOpsManager != null;
                 cameraOp = appOpsManager.checkOp(MUIPermission, Binder.getCallingUid(), activity.getPackageName());
             }
             if (cameraOp != -1) {
-                return cameraOp != AppOpsManager.MODE_IGNORED;
+                if (cameraOp == AppOpsManager.MODE_IGNORED) {
+                    return false;
+                }
+                return true;
             } else {
                 return false;
             }
@@ -203,7 +211,11 @@ public class PermissionManager {
      */
     public boolean isMIUI() {
         String device = Build.MANUFACTURER;
-        return device.equals("Xiaomi");
+        if (device.equals("Xiaomi")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -231,27 +243,27 @@ public class PermissionManager {
      */
     @TargetApi(Build.VERSION_CODES.M)
     private void executePermissionsRequest(@NonNull String[] perms) {
-        if (mContext instanceof Activity) {
-            ((Activity) mContext).requestPermissions(perms, PermissionManager.REQUEST_PERMISSION_CODE);
-        } else if (mContext instanceof Fragment) {
-            ((Fragment) mContext).requestPermissions(perms, PermissionManager.REQUEST_PERMISSION_CODE);
+        if (isWeakNotNull() &&mWeakRef.get() instanceof Activity) {
+            ((Activity) mWeakRef.get()).requestPermissions(perms, PermissionManager.REQUEST_PERMISSION_CODE);
+        } else if (isWeakNotNull() &&mWeakRef.get() instanceof Fragment) {
+            ((Fragment) mWeakRef.get()).requestPermissions(perms, PermissionManager.REQUEST_PERMISSION_CODE);
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean shouldShowRequestPermissionRationale(String[] perms) {
-        if (mContext instanceof Activity) {
-            for (String perm : perms) {
-                if (!((Activity) mContext).shouldShowRequestPermissionRationale(perm)) {
+        if (isWeakNotNull() &&mWeakRef.get() instanceof Activity) {
+            for (int i = 0; i < perms.length; i++) {
+                if (!((Activity) mWeakRef.get()).shouldShowRequestPermissionRationale(perms[i])) {
                     return false;
                 }
             }
             return true;
-        } else if (mContext instanceof Fragment) {
-            FragmentActivity activity = ((Fragment) mContext).getActivity();
+        } else if (isWeakNotNull() &&mWeakRef.get() instanceof Fragment) {
+            FragmentActivity activity = ((Fragment) mWeakRef.get()).getActivity();
             if (activity != null) {
-                for (String perm : perms) {
-                    if (!((Activity) mContext).shouldShowRequestPermissionRationale(perm)) {
+                for (int i = 0; i < perms.length; i++) {
+                    if (!((Activity) mWeakRef.get()).shouldShowRequestPermissionRationale(perms[i])) {
                         return false;
                     }
                 }
