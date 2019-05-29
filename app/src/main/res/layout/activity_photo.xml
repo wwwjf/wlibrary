@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:transitionName="@string/cover_scene_transition"
+    tools:context=".PhotoActivity">
+
+    <com.wwwjf.wcommonlibrary.widget.photoview.PhotoView
+        android:id="@+id/iv_avatar"
+        android:layout_width="match_parent"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"
+        android:scaleType="center"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

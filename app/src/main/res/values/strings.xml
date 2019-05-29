@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">wlibrary</string>
+    <string name="cover_scene_transition" translatable="false">封面共享元素动画</string>
 </resources>

@@ -1,8 +1,13 @@
 package com.wwwjf.wlibrary;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.wwwjf.wcommonlibrary.utils.KLog;
 
@@ -29,5 +34,18 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
+        ImageView btnAvatar = findViewById(R.id.btn_avatar);
+        btnAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPicture = new Intent(MainActivity.this,PhotoActivity.class);
+
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
+                        v,getString(R.string.cover_scene_transition));
+
+                startActivity(intentPicture,optionsCompat.toBundle());
+            }
+        });
     }
 }
