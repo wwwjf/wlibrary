@@ -26,8 +26,8 @@
         android:layout_height="wrap_content" />
     <ImageView
         android:id="@+id/btn_avatar"
-        android:layout_width="match_parent"
-        android:src="@mipmap/ic_launcher"
-        android:layout_height="wrap_content" />
+        android:layout_width="50dp"
+        android:src="@mipmap/qrcode"
+        android:layout_height="50dp" />
 
 </LinearLayout>

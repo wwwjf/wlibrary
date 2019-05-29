@@ -10,7 +10,7 @@
     <com.wwwjf.wcommonlibrary.widget.photoview.PhotoView
         android:id="@+id/iv_avatar"
         android:layout_width="match_parent"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/qrcode"
         android:layout_gravity="center"
         android:scaleType="center"
         android:layout_height="match_parent" />
