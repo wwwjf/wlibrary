@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+
+    <declare-styleable name="FlowViewHorizontal">
+        <attr name="h_bg_radius" format="dimension" />
+        <attr name="h_pro_radius" format="dimension" />
+        <attr name="h_bg_width" format="dimension" />
+        <attr name="h_bg_color" format="color" />
+        <attr name="h_pro_width" format="dimension" />
+        <attr name="h_pro_color" format="color" />
+        <attr name="h_text_padding" format="dimension" />
+        <attr name="h_time_padding" format="dimension" />
+        <attr name="h_max_step" format="integer" />
+        <attr name="h_textsize" format="dimension" />
+        <attr name="h_pro_step" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="StepProgressView">
+        <attr name="textSize" format="dimension" />
+        <attr name="bgColor" format="color" />
+        <attr name="lineBgWidth" format="dimension" />
+        <attr name="circleBgInnerRadius" format="dimension" />
+        <attr name="circleBgOutRadius" format="dimension" />
+        <attr name="circleStrokeWidth" format="dimension" />
+        <attr name="maxStep" format="integer" />
+    </declare-styleable>
+</resources>

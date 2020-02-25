@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 
+import com.wwwjf.stepprogresslibrary.StepProgressView;
 import com.wwwjf.wcommonlibrary.utils.KLog;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
+        /*ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setProgress(50);
         progressDialog.setMax(100);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setMessage("12312");
         progressDialog.setCancelable(true);
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+        progressDialog.show();*/
 
         ImageView btnAvatar = findViewById(R.id.btn_avatar);
         btnAvatar.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +49,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentPicture,optionsCompat.toBundle());
             }
         });
+
+        StepProgressView stepProgressView = findViewById(R.id.stepView_content);
+        stepProgressView.setProgressText(0,"选择充值币种");
     }
 }
