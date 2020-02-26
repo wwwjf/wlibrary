@@ -21,11 +21,19 @@
 
     <declare-styleable name="StepProgressView">
         <attr name="textSize" format="dimension" />
-        <attr name="bgColor" format="color" />
-        <attr name="lineBgWidth" format="dimension" />
-        <attr name="circleBgInnerRadius" format="dimension" />
-        <attr name="circleBgOutRadius" format="dimension" />
+        <attr name="textPaddingTop" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="lineColor" format="color" />
+        <attr name="lineProgressColor" format="color" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="circleInnerRadius" format="dimension" />
+        <attr name="circleInnerColor" format="dimension" />
+        <attr name="circleOutRadius" format="dimension" />
+        <attr name="circleOutColor" format="dimension" />
+        <attr name="circleProgressOutColor" format="dimension" />
         <attr name="circleStrokeWidth" format="dimension" />
         <attr name="maxStep" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="progressText" format="string" />
     </declare-styleable>
 </resources>

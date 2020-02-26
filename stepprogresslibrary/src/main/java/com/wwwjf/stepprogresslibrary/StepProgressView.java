@@ -20,25 +20,24 @@ public class StepProgressView extends View {
     private Paint textPaint;
     private Paint linePaint;
     private Paint circlePaint;
-    private Paint proPaint;
-    private float bgRadius;
-    private float proRadius;
     private float startX;
     private float stopX;
     private float bgCenterY;
     private int lineBgWidth;
-    private int circleBgInnerRadius;
-    private int circleBgOutRadius;
+    private int circleInnerRadius;
+    private int circleInnerColor;
+    private int circleOutRadius;
+    private int circleOutColor;
+    private int circleProgressOutColor;
     private int circleStrokeWidth;
-    private int bgColor;
-    private int lineProWidth;
-    private int proColor;
-    private int textPadding;
-    private int timePadding;
+    private int lineColor;
+    private int lineProgressColor;
     private float textSize;
+    private float textPaddingTop;
+    private int textColor;
     private int maxStep;
-    private int proStep;
-    private String proStepText = "选择充值币种";
+    private int progressStep;
+    private String progressStepText = "进度文字";
     private int interval;
 
 
@@ -54,12 +53,20 @@ public class StepProgressView extends View {
         super(context, attrs, defStyleAttr);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.StepProgressView);
         textSize = (int) ta.getDimension(R.styleable.StepProgressView_textSize, Util.dip2px(getContext(), 14f));
-        bgColor = ta.getColor(R.styleable.StepProgressView_bgColor, Color.parseColor("#e8eaf2"));
-        lineBgWidth = (int) ta.getDimension(R.styleable.StepProgressView_lineBgWidth, Util.dip2px(getContext(), 6f));
-        circleBgInnerRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleBgInnerRadius, (float) lineBgWidth);
-        circleBgOutRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleBgOutRadius, Util.dip2px(getContext(), 7f));
+        textPaddingTop = (int) ta.getDimension(R.styleable.StepProgressView_textPaddingTop, Util.dip2px(getContext(), 6f));
+        textColor = (int) ta.getDimension(R.styleable.StepProgressView_textColor, Color.parseColor("#17364e"));
+        lineColor = ta.getColor(R.styleable.StepProgressView_lineColor, Color.parseColor("#e8eaf2"));
+        lineProgressColor = ta.getColor(R.styleable.StepProgressView_lineProgressColor, Color.parseColor("#6E93F1"));
+        lineBgWidth = (int) ta.getDimension(R.styleable.StepProgressView_lineWidth, Util.dip2px(getContext(), 6f));
+        circleInnerRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleInnerRadius, (float) lineBgWidth);
+        circleInnerColor = (int) ta.getDimension(R.styleable.StepProgressView_circleInnerColor, Color.WHITE);
+        circleOutRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleOutRadius, Util.dip2px(getContext(), 7f));
+        circleOutColor = (int) ta.getDimension(R.styleable.StepProgressView_circleOutColor, Color.parseColor("#9FA5B4"));
+        circleProgressOutColor = (int) ta.getDimension(R.styleable.StepProgressView_circleProgressOutColor, Color.parseColor("#3b55e6"));
         circleStrokeWidth = (int) ta.getDimension(R.styleable.StepProgressView_circleStrokeWidth, Util.dip2px(getContext(), 4f));
         maxStep = ta.getInteger(R.styleable.StepProgressView_maxStep, 6);
+        progressStep = ta.getInteger(R.styleable.StepProgressView_progress, 2);
+        progressStepText = ta.getString(R.styleable.StepProgressView_progressText);
         ta.recycle();
         init();
     }
@@ -68,7 +75,7 @@ public class StepProgressView extends View {
         linePaint = new Paint();
         linePaint.setAntiAlias(true);
         linePaint.setStyle(Paint.Style.FILL);
-        linePaint.setColor(bgColor);
+        linePaint.setColor(lineColor);
         linePaint.setStrokeWidth(lineBgWidth);
         linePaint.setTextSize(textSize);
         linePaint.setTextAlign(Paint.Align.CENTER);
@@ -76,20 +83,19 @@ public class StepProgressView extends View {
         textPaint = new Paint();
         textPaint.setAntiAlias(true);
         textPaint.setStyle(Paint.Style.FILL);
-        textPaint.setColor(Color.parseColor("#17364e"));
-//        textPaint.setStrokeWidth(lineProWidth);
+        textPaint.setColor(textColor);
         textPaint.setTextSize(textSize);
         textPaint.setTextAlign(Paint.Align.LEFT);
 
         circlePaint = new Paint();
         circlePaint.setAntiAlias(true);
-        circlePaint.setColor(Color.WHITE);
+        circlePaint.setColor(circleInnerColor);
         circlePaint.setStyle(Paint.Style.FILL);
     }
 
     public void setProgressText(int progress, String progressText) {
-        proStep = progress;
-        proStepText = progressText;
+        progressStep = progress;
+        progressStepText = progressText;
     }
 
     @Override
@@ -104,66 +110,110 @@ public class StepProgressView extends View {
             bgWidth = Util.dip2px(getContext(), 311);
         }
 
-        int bgHeight;
-        if (heightMode == MeasureSpec.EXACTLY) {
-            bgHeight = MeasureSpec.getSize(heightMeasureSpec) - getPaddingTop() - getPaddingBottom();
-        } else {
-            bgHeight = Util.dip2px(getContext(), 49);
-        }
-        Log.e(TAG, "=====onMeasure bgHeight=" + bgHeight + ",bgWidth=" + bgWidth);
         stopX = bgWidth;
-        startX = getPaddingStart();
+        startX = getPaddingStart() + circleOutRadius + circleStrokeWidth / 2;
         bgCenterY = getPaddingTop() + (float) lineBgWidth / 2;
+
+        setMeasuredDimension(measureWidth(widthMeasureSpec), measureHeight(heightMeasureSpec));
+    }
+
+    private int measureHeight(int measureSpec) {
+        int result = 0;
+        int mode = MeasureSpec.getMode(measureSpec);
+        int size = MeasureSpec.getSize(measureSpec);
+
+        if (mode == MeasureSpec.EXACTLY) {
+            result = MeasureSpec.getSize(measureSpec) + getPaddingTop() + getPaddingBottom();
+            ;
+        } else {
+            result = Util.dip2px(getContext(), 64);
+            if (mode == MeasureSpec.AT_MOST) {
+                result = Math.min(result, size);
+            }
+        }
+        return result;
+
+    }
+
+    private int measureWidth(int measureSpec) {
+        int result = 0;
+        int mode = MeasureSpec.getMode(measureSpec);
+        int size = MeasureSpec.getSize(measureSpec);
+
+        if (mode == MeasureSpec.EXACTLY) {
+            result = size;
+        } else {
+            result = 75;//根据自己的需要更改
+            if (mode == MeasureSpec.AT_MOST) {
+                result = Math.min(result, size);
+            }
+        }
+        return result;
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.e(TAG, "=====onDraw");
         interval = (int) ((stopX - startX) / (maxStep - 1));
         drawBg(canvas);
-//        drawProgress(canvas);
         drawText(canvas);
     }
 
 
+    /**
+     * 画圆形、画线
+     *
+     * @param canvas canvas
+     */
     private void drawBg(Canvas canvas) {
 
-        Log.e(TAG, "=====drawBg:" + bgCenterY);
         for (int i = 0; i < maxStep; i++) {
-
-            circlePaint.setColor(Color.WHITE);
+            circlePaint.setColor(circleInnerColor);
             circlePaint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(startX + interval * i, bgCenterY, (float) circleBgInnerRadius, circlePaint);
+            //内圈小圆
+            canvas.drawCircle(startX + interval * i, bgCenterY, (float) circleInnerRadius, circlePaint);
             circlePaint.setStyle(Paint.Style.STROKE);
             circlePaint.setStrokeWidth(circleStrokeWidth);
-            if (i <= proStep) {
-                circlePaint.setColor(Color.parseColor("#3b55e6"));
+            if (i <= progressStep) {
+                circlePaint.setColor(circleProgressOutColor);
             } else {
-                circlePaint.setColor(Color.parseColor("#9FA5B4"));
+                circlePaint.setColor(circleOutColor);
             }
-            if (i > 0 && i < maxStep - 1) {
-                linePaint.setColor(bgColor);
+            if (i > progressStep - 1 && i <= maxStep - 1) {
+                linePaint.setColor(lineColor);
             } else {
-                linePaint.setColor(Color.parseColor("#3b55e6"));
+                linePaint.setColor(lineProgressColor);
             }
-            canvas.drawLine(startX + interval * i + circleBgOutRadius, bgCenterY, stopX, bgCenterY, linePaint);
-            canvas.drawCircle(startX + interval * i, bgCenterY, (float) (circleBgOutRadius), circlePaint);
+            //线
+            canvas.drawLine(startX + interval * i + circleOutRadius, bgCenterY, stopX, bgCenterY, linePaint);
+            //外圈大圆
+            canvas.drawCircle(startX + interval * i, bgCenterY, (float) (circleOutRadius), circlePaint);
 
         }
     }
 
+    /**
+     * 画文字
+     *
+     * @param canvas canvas
+     */
     private void drawText(Canvas canvas) {
         //文字高度
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
         float textHeight = fontMetrics.bottom - fontMetrics.top + fontMetrics.leading;
-        if (proStep == 0) {
+        if (progressStep == 0) {
             textPaint.setTextAlign(Paint.Align.LEFT);
-        } else if (proStep >= maxStep - 1) {
+            startX = startX - Util.dip2px(getContext(), 8f);
+        } else if (progressStep >= maxStep - 1) {
             textPaint.setTextAlign(Paint.Align.RIGHT);
+            startX = startX + Util.dip2px(getContext(), 8f);
         } else {
             textPaint.setTextAlign(Paint.Align.CENTER);
         }
-        canvas.drawText(proStepText, startX + interval * proStep, bgCenterY + (float) lineBgWidth / 2 + textHeight, textPaint);
+        canvas.drawText(progressStepText,
+                startX + interval * progressStep,
+                bgCenterY + (float) lineBgWidth / 2 + textHeight + textPaddingTop,
+                textPaint);
     }
 }

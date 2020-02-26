@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#00ff00"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
@@ -39,6 +39,8 @@
         android:layout_marginTop="16dp"
         android:paddingStart="14dp"
         android:paddingTop="14dp"
-        android:paddingEnd="14dp" />
+        android:paddingEnd="14dp"
+        app:textSize="30sp"
+        app:progressText="@string/app_name" />
 
 </LinearLayout>

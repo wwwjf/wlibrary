@@ -38,19 +38,16 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();*/
 
         ImageView btnAvatar = findViewById(R.id.btn_avatar);
-        btnAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentPicture = new Intent(MainActivity.this,PhotoActivity.class);
+        btnAvatar.setOnClickListener(v -> {
+            Intent intentPicture = new Intent(MainActivity.this,PhotoActivity.class);
 
-                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-                        v,getString(R.string.cover_scene_transition));
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
+                    v,getString(R.string.cover_scene_transition));
 
-                startActivity(intentPicture,optionsCompat.toBundle());
-            }
+            startActivity(intentPicture,optionsCompat.toBundle());
         });
 
         StepProgressView stepProgressView = findViewById(R.id.stepView_content);
-        stepProgressView.setProgressText(0,"选择充值币种");
+//        stepProgressView.setProgressText(5,"选择提现币种");
     }
 }
