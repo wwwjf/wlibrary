@@ -54,14 +54,14 @@ public class StepProgressView extends View {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.StepProgressView);
         textSize = (int) ta.getDimension(R.styleable.StepProgressView_textSize, Util.dip2px(getContext(), 14f));
         textPaddingTop = (int) ta.getDimension(R.styleable.StepProgressView_textPaddingTop, Util.dip2px(getContext(), 6f));
-        textColor = (int) ta.getDimension(R.styleable.StepProgressView_textColor, Color.parseColor("#17364e"));
+        textColor = ta.getColor(R.styleable.StepProgressView_textColor, Color.parseColor("#17364e"));
         lineColor = ta.getColor(R.styleable.StepProgressView_lineColor, Color.parseColor("#e8eaf2"));
         lineProgressColor = ta.getColor(R.styleable.StepProgressView_lineProgressColor, Color.parseColor("#6E93F1"));
         lineBgWidth = (int) ta.getDimension(R.styleable.StepProgressView_lineWidth, Util.dip2px(getContext(), 6f));
         circleInnerRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleInnerRadius, (float) lineBgWidth);
-        circleInnerColor = (int) ta.getDimension(R.styleable.StepProgressView_circleInnerColor, Color.WHITE);
+        circleInnerColor = ta.getColor(R.styleable.StepProgressView_circleInnerColor, Color.WHITE);
         circleOutRadius = (int) ta.getDimension(R.styleable.StepProgressView_circleOutRadius, Util.dip2px(getContext(), 7f));
-        circleOutColor = (int) ta.getDimension(R.styleable.StepProgressView_circleOutColor, Color.parseColor("#9FA5B4"));
+        circleOutColor = ta.getColor(R.styleable.StepProgressView_circleOutColor, Color.parseColor("#9FA5B4"));
         circleProgressOutColor = (int) ta.getDimension(R.styleable.StepProgressView_circleProgressOutColor, Color.parseColor("#3b55e6"));
         circleStrokeWidth = (int) ta.getDimension(R.styleable.StepProgressView_circleStrokeWidth, Util.dip2px(getContext(), 4f));
         maxStep = ta.getInteger(R.styleable.StepProgressView_maxStep, 6);
@@ -102,7 +102,6 @@ public class StepProgressView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int bgWidth;
         if (widthMode == MeasureSpec.EXACTLY) {
             bgWidth = MeasureSpec.getSize(widthMeasureSpec) - getPaddingLeft() - getPaddingRight();
@@ -118,13 +117,12 @@ public class StepProgressView extends View {
     }
 
     private int measureHeight(int measureSpec) {
-        int result = 0;
+        int result;
         int mode = MeasureSpec.getMode(measureSpec);
         int size = MeasureSpec.getSize(measureSpec);
 
         if (mode == MeasureSpec.EXACTLY) {
             result = MeasureSpec.getSize(measureSpec) + getPaddingTop() + getPaddingBottom();
-            ;
         } else {
             result = Util.dip2px(getContext(), 64);
             if (mode == MeasureSpec.AT_MOST) {
@@ -136,7 +134,7 @@ public class StepProgressView extends View {
     }
 
     private int measureWidth(int measureSpec) {
-        int result = 0;
+        int result;
         int mode = MeasureSpec.getMode(measureSpec);
         int size = MeasureSpec.getSize(measureSpec);
 

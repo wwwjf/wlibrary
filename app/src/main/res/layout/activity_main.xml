@@ -37,10 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
+        android:background="#ff0000"
         android:paddingStart="14dp"
         android:paddingTop="14dp"
         android:paddingEnd="14dp"
-        app:textSize="30sp"
-        app:progressText="@string/app_name" />
+        app:progressText="@string/app_name"
+        app:textColor="#f0f0f0"
+        app:textSize="18sp" />
 
 </LinearLayout>

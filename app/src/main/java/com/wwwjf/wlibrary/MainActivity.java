@@ -48,6 +48,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         StepProgressView stepProgressView = findViewById(R.id.stepView_content);
-//        stepProgressView.setProgressText(5,"选择提现币种");
+        stepProgressView.setProgressText(5,"选择提现币种");
     }
 }
