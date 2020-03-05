@@ -1,1 +1,1 @@
-include ':app', ':wcommonlibrary', ':stepprogresslibrary', ':pickerlibrary'
+include ':app', ':wcommonlibrary', ':stepprogresslibrary', ':pickerlibrary', ':indexbarlibrary'
