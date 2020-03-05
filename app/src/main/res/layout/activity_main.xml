@@ -45,4 +45,10 @@
         app:textColor="#f0f0f0"
         app:textSize="18sp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:text="选择日期"
+        android:onClick="showPicker"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

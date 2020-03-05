@@ -71,8 +71,8 @@ public class DateTimePicker extends WheelPicker {
     private OnWheelListener onWheelListener;
     private OnDateTimePickListener onDateTimePickListener;
     private int dateMode = YEAR_MONTH_DAY, timeMode = HOUR_24;
-    private int startYear = 2010, startMonth = 1, startDay = 1;
-    private int endYear = 2020, endMonth = 12, endDay = 31;
+    private int startYear = 1900, startMonth = 1, startDay = 1;
+    private int endYear = 2900, endMonth = 12, endDay = 31;
     private int startHour, startMinute = 0;
     private int endHour, endMinute = 59;
     private int textSize = WheelView.TEXT_SIZE;

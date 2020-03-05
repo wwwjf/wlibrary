@@ -142,6 +142,16 @@ public abstract class WheelPicker extends ConfirmPopup<View> {
         }
         dividerConfig.setVisible(true);
         dividerConfig.setColor(lineColor);
+    }/**
+     * 设置分隔线颜色
+     */
+    public void setDividerColor(@ColorInt int lineColor,@IntRange(from = 1, to = 255) int alpha) {
+        if (null == dividerConfig) {
+            dividerConfig = new WheelView.DividerConfig();
+        }
+        dividerConfig.setVisible(true);
+        dividerConfig.setColor(lineColor);
+        dividerConfig.setAlpha(alpha);
     }
 
     /**

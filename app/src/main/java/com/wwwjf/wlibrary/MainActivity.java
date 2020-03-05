@@ -3,6 +3,7 @@ package com.wwwjf.wlibrary;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,34 +53,32 @@ public class MainActivity extends AppCompatActivity {
         StepProgressView stepProgressView = findViewById(R.id.stepView_content);
 //        stepProgressView.setProgressText(5,"选择提现币种");
 
-        showPicker();
     }
 
-    private void showPicker() {
+    public void showPicker(View view) {
 
         String[] nowDate = "2020-02-28".split("-");
         String[] ymdInit = "2020-02-02".split("-");
         DatePicker picker = new DatePicker(this);
         picker.setCancelTextColor(Color.parseColor("#17364e"));
         picker.setCancelTextSize(17);
+        picker.setTitleText("请选择");
+        picker.setTitleTextSize(15);
+        picker.setTitleTextColor(Color.parseColor("#879aa9"));
         picker.setSubmitTextColor(Color.parseColor("#17364e"));
         picker.setSubmitTextSize(17);
         picker.setTopLineVisible(false);
         picker.setOffset(2);
-        picker.setDividerVisible(false);
+        picker.setDividerColor(Color.parseColor("#667487"),77);
         picker.setTextSize(20);
         picker.setTopPadding(54);
         picker.setLineSpaceMultiplier(2);
+        picker.setDividerRatio(0);
         picker.setBackgroundColor(Color.WHITE);
-        picker.setPressedTextColor(Color.parseColor("#b3ffffff"));
-        picker.setRangeStart(1949, 1, 1);
+        picker.setPressedTextColor(Color.parseColor("#879aa9"));
         picker.setTopBackgroundColor(Color.WHITE);
-        picker.setTextPadding(0);
-        picker.setTextColor(Color.parseColor("#17364e"),
-                Color.parseColor("#17364e"));
-        picker.setLabelTextColor(Color.parseColor("#33ffffff"));
+        picker.setTextColor(Color.parseColor("#17364e"), Color.parseColor("#879aa9"));
         picker.setLabel("年","月","日");
-        picker.setShadowColor(Color.parseColor("#33ffffff"));
         picker.setRangeEnd(Integer.valueOf(nowDate[0]), Integer.valueOf(nowDate[1]), Integer.valueOf(nowDate[2]));
 
         if (ymdInit.length == 3) {
