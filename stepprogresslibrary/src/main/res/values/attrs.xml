@@ -18,21 +18,23 @@
         <attr name="h_textsize" format="dimension" />
         <attr name="h_pro_step" format="integer" />
     </declare-styleable>
+
     <declare-styleable name="StepProgressView">
-    <attr name="textSize" format="reference|dimension" />
-    <attr name="textPaddingTop" format="reference|dimension" />
-    <attr name="textColor" format="reference|color" />
-    <attr name="lineColor" format="reference|color" />
-    <attr name="lineProgressColor" format="reference|color" />
-    <attr name="lineWidth" format="reference|dimension" />
-    <attr name="circleInnerRadius" format="reference|dimension" />
-    <attr name="circleInnerColor" format="reference|dimension" />
-    <attr name="circleOutRadius" format="reference|dimension" />
-    <attr name="circleOutColor" format="reference|dimension" />
-    <attr name="circleProgressOutColor" format="reference|dimension" />
-    <attr name="circleStrokeWidth" format="reference|dimension" />
-    <attr name="maxStep" format="reference|integer" />
-    <attr name="progress" format="reference|integer" />
-    <attr name="progressText" format="reference|string" />
+        <attr name="spv_textSize" format="reference|dimension" />
+        <attr name="spv_textPaddingTop" format="reference|dimension" />
+        <attr name="spv_textColor" format="reference|color" />
+        <attr name="spv_lineColor" format="reference|color" />
+        <attr name="spv_lineProgressColor" format="reference|color" />
+        <attr name="spv_lineWidth" format="reference|dimension" />
+        <attr name="spv_circleInnerRadius" format="reference|dimension" />
+        <attr name="spv_circleInnerColor" format="reference|color" />
+        <attr name="spv_circleOutRadius" format="reference|dimension" />
+        <attr name="spv_circleOutColor" format="reference|color" />
+        <attr name="spv_circleOutFinishColor" format="reference|color" />
+        <attr name="spv_circleProgressOutColor" format="reference|color" />
+        <attr name="spv_circleStrokeWidth" format="reference|dimension" />
+        <attr name="spv_maxStep" format="reference|integer" />
+        <attr name="spv_progress" format="reference|integer" />
+        <attr name="spv_progressText" format="reference|string" />
     </declare-styleable>
 </resources>
