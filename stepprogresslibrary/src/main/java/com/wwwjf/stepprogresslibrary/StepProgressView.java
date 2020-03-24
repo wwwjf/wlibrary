@@ -53,9 +53,6 @@ public class StepProgressView extends View {
     public StepProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.StepProgressView);
-        textSize = (int) ta.getDimension(R.styleable.StepProgressView_spv_textSize, Util.dip2px(getContext(), 12f));
-        textPaddingTop = (int) ta.getDimension(R.styleable.StepProgressView_spv_textPaddingTop, Util.dip2px(getContext(), 6f));
-        textColor = ta.getColor(R.styleable.StepProgressView_spv_textColor, Color.parseColor("#17364e"));
         lineColor = ta.getColor(R.styleable.StepProgressView_spv_lineColor, Color.parseColor("#d2d4da"));
         lineProgressColor = ta.getColor(R.styleable.StepProgressView_spv_lineProgressColor, Color.parseColor("#6E93F1"));
         lineBgWidth = (int) ta.getDimension(R.styleable.StepProgressView_spv_lineWidth, Util.dip2px(getContext(), 6f));
@@ -64,11 +61,14 @@ public class StepProgressView extends View {
         circleOutRadius = (int) ta.getDimension(R.styleable.StepProgressView_spv_circleOutRadius, Util.dip2px(getContext(), 7f));
         circleOutColor = ta.getColor(R.styleable.StepProgressView_spv_circleOutColor, Color.parseColor("#9FA5B4"));
         circleOutFinishColor = ta.getColor(R.styleable.StepProgressView_spv_circleOutFinishColor, Color.parseColor("#3B55E6"));
-        circleProgressOutColor = (int) ta.getColor(R.styleable.StepProgressView_spv_circleProgressOutColor, Color.parseColor("#3b55e6"));
+        circleProgressOutColor = (int) ta.getColor(R.styleable.StepProgressView_spv_circleProgressOutColor, Color.parseColor("#de3f3d"));
         circleStrokeWidth = (int) ta.getDimension(R.styleable.StepProgressView_spv_circleStrokeWidth, Util.dip2px(getContext(), 4f));
         maxStep = ta.getInteger(R.styleable.StepProgressView_spv_maxStep, 6);
         progressStep = ta.getInteger(R.styleable.StepProgressView_spv_progress, 2);
         progressStepText = ta.getString(R.styleable.StepProgressView_spv_progressText);
+        textSize = (int) ta.getDimension(R.styleable.StepProgressView_spv_textSize, Util.dip2px(getContext(), 12f));
+        textPaddingTop = (int) ta.getDimension(R.styleable.StepProgressView_spv_textPaddingTop, Util.dip2px(getContext(), 6f));
+        textColor = ta.getColor(R.styleable.StepProgressView_spv_textColor, circleProgressOutColor);
         ta.recycle();
         init();
     }
@@ -95,9 +95,137 @@ public class StepProgressView extends View {
         circlePaint.setStyle(Paint.Style.FILL);
     }
 
-    public void setProgressText(int progress, String progressText) {
+    public void setProgressInfo(int progress, String progressText) {
         progressStep = progress;
         progressStepText = progressText;
+    }
+
+    public int getLineBgWidth() {
+        return lineBgWidth;
+    }
+
+    public void setLineBgWidth(int lineBgWidth) {
+        this.lineBgWidth = lineBgWidth;
+    }
+
+    public int getCircleInnerRadius() {
+        return circleInnerRadius;
+    }
+
+    public void setCircleInnerRadius(int circleInnerRadius) {
+        this.circleInnerRadius = circleInnerRadius;
+    }
+
+    public int getCircleInnerColor() {
+        return circleInnerColor;
+    }
+
+    public void setCircleInnerColor(int circleInnerColor) {
+        this.circleInnerColor = circleInnerColor;
+    }
+
+    public int getCircleOutRadius() {
+        return circleOutRadius;
+    }
+
+    public void setCircleOutRadius(int circleOutRadius) {
+        this.circleOutRadius = circleOutRadius;
+    }
+
+    public int getCircleOutColor() {
+        return circleOutColor;
+    }
+
+    public void setCircleOutColor(int circleOutColor) {
+        this.circleOutColor = circleOutColor;
+    }
+
+    public int getCircleOutFinishColor() {
+        return circleOutFinishColor;
+    }
+
+    public void setCircleOutFinishColor(int circleOutFinishColor) {
+        this.circleOutFinishColor = circleOutFinishColor;
+    }
+
+    public int getCircleProgressOutColor() {
+        return circleProgressOutColor;
+    }
+
+    public void setCircleProgressOutColor(int circleProgressOutColor) {
+        this.circleProgressOutColor = circleProgressOutColor;
+    }
+
+    public int getCircleStrokeWidth() {
+        return circleStrokeWidth;
+    }
+
+    public void setCircleStrokeWidth(int circleStrokeWidth) {
+        this.circleStrokeWidth = circleStrokeWidth;
+    }
+
+    public int getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(int lineColor) {
+        this.lineColor = lineColor;
+    }
+
+    public int getLineProgressColor() {
+        return lineProgressColor;
+    }
+
+    public void setLineProgressColor(int lineProgressColor) {
+        this.lineProgressColor = lineProgressColor;
+    }
+
+    public float getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(float textSize) {
+        this.textSize = textSize;
+    }
+
+    public float getTextPaddingTop() {
+        return textPaddingTop;
+    }
+
+    public void setTextPaddingTop(float textPaddingTop) {
+        this.textPaddingTop = textPaddingTop;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getMaxStep() {
+        return maxStep;
+    }
+
+    public void setMaxStep(int maxStep) {
+        this.maxStep = maxStep;
+    }
+
+    public int getProgressStep() {
+        return progressStep;
+    }
+
+    public void setProgressStep(int progressStep) {
+        this.progressStep = progressStep;
+    }
+
+    public String getProgressStepText() {
+        return progressStepText;
+    }
+
+    public void setProgressStepText(String progressStepText) {
+        this.progressStepText = progressStepText;
     }
 
     @Override

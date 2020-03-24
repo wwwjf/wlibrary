@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="#ffffff"
+    android:paddingStart="0dp"
+    android:paddingEnd="6dp"
+    app:navigationIcon="@drawable/ic_back_17364e">
+
+
+    <TextView
+        android:id="@+id/tv_toolbar_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:textColor="#17364E"
+        android:textSize="18sp"
+        tools:text="中间文字" />
+
+    <ImageView
+        android:id="@+id/iv_toolbar_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+
+    <ImageView
+        android:id="@+id/iv_toolbar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:padding="8dp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_toolbar_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:textColor="#17364E"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="右边文字"
+        tools:visibility="visible" />
+
+</androidx.appcompat.widget.Toolbar>

@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#3B55E6</color>
+    <color name="colorPrimaryDark">#3B55E6</color>
+    <color name="colorAccent">#3B55E6</color>
+    <color name="text_color_black">#FF333333</color>
+    <color name="red_color_FF4855">#FF4855</color>
+    <color name="black_color_333333">#333333</color>
+    <color name="black_color_000000">#000000</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_eeeeee">#EEEEEE</color>
+    <color name="blue_color_007AFF">#007AFF</color>
+    <color name="black_color_AAAAAA">#AAAAAA</color>
+
+    <!--主色调-->
+    <color name="color_3B55E6">#3B55E6</color>
+    <!--60%透明度主色调-->
+    <color name="color_663B55E6">#663B55E6</color>
+    <!--90%透明度主色调-->
+    <color name="color_1A3B55E6">#1A3B55E6</color>
+    <!--10%透明度主色调-->
+    <color name="color_E53B55E6">#e53B55E6</color>
+    <!--20%透明度叠加值 button按下-->
+    <color name="color_2f44b8">#2F44B8</color>
+
+    <color name="color_663F69F8">#663F69F8</color>
+    <color name="color_FF3F69F8">#FF3F69F8</color>
+    <color name="color_CCCFE0">#CCCFE0</color>
+    <color name="color_D7D8DD">#FFD7D8DD</color>
+    <color name="color_green_05B169">#05B169</color>
+    <color name="color_green_8fc31f">#8fc31f</color>
+
+    <color name="color_red_de3f3d">#DE3F3D</color>
+    <!--20%透明度叠加值 button按下-->
+    <color name="color_red_cb2e2c">#CB2E2C</color>
+    <!--主文字-->
+    <color name="color_text_main_243F5E">#243F5E</color>
+    <color name="color_text_main_1A243F5E">#1A243F5E</color>
+    <color name="color_text_main_17364E">#17364E</color>
+    <color name="color_text_main_879AA9">#879AA9</color>
+    <!--副文本-->
+    <color name="color_text_vice_667487">#667487</color>
+    <!--辅助文字-->
+    <color name="color_text_secondary_A8B4C4">#A8B4C4</color>
+    <!--底色/分割线-->
+    <color name="color_line_f7f7f7">#F7F7F7</color>
+
+    <!--不同透明度的引用-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_88000000">#88000000</color>
+    <color name="transparent_6">#0F000000</color>
+    <color name="transparent_10">#1a000000</color>
+    <color name="transparent_15">#26000000</color>
+    <color name="transparent_20">#33000000</color>
+    <color name="transparent_30">#4d000000</color>
+    <color name="transparent_40">#66000000</color>
+    <color name="transparent_50">#80000000</color>
+    <color name="transparent_60">#9a000000</color>
+    <color name="transparent_70">#b3000000</color>
+    <color name="transparent_66">#66000000</color>
+    <color name="transparent_4c">#4c000000</color>
+    <color name="transparent_80">#80000000</color>
+    <color name="transparent_62">#66202020</color>
+    <color name="transparent_e6">#e6202020</color>
+    <color name="transparent_33">#33000000</color>
+    <color name="transparent_cc">#cc202020</color>
+    <color name="transparent_82">#80202020</color>
+    <color name="transparent_05">#50000000</color>
+
+    <color name="black">#000000</color>
+    <color name="black_6">#0F000000</color>
+    <color name="black_10">#1a000000</color>
+    <color name="black_15">#26000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_30">#4d000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#9a000000</color>
+    <color name="black_70">#b3000000</color>
+    <color name="black_80">#cd000000</color>
+    <color name="black_85">#d8000000</color>
+    <color name="black_90">#e5000000</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_10">#1aFFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_30">#4dFFFFFF</color>
+    <color name="white_40">#66FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_60">#9affffff</color>
+    <color name="white_70">#b3ffffff</color>
+    <color name="white_80">#cdffffff</color>
+    <color name="white_90">#e5ffffff</color>
+
+
+    <color name="color_B2B2B2B2">#B2B2B2B2</color>
+    <color name="color_C9CDD3">#C9CDD3</color>
+    <!-- 默认水波纹效果颜色 -->
+    <color name="color_ripple_B3FFFFFF">#B3FFFFFF</color>
+
+    <color name="color_E8EAF2">#E8EAF2</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_051323">#051323</color>
+    <color name="color_9A051323">#9A051323</color>
+    <color name="color_4D243F5E">#4D243F5E</color>
+    <color name="color_DDDDDD">#DDDDDD</color>
+    <color name="color_D9DAEB">#D9DAEB</color>
 </resources>
+
