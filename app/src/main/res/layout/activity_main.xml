@@ -35,15 +35,13 @@
     <com.wwwjf.stepprogresslibrary.StepProgressView
         android:id="@+id/stepView_content"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:background="#ff0000"
-        android:paddingStart="14dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="14dp"
-        app:progressText="@string/app_name"
-        app:textColor="#f0f0f0"
-        app:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:background="@color/color_line_f7f7f7"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        app:spv_progress="1"
+        app:spv_progressText="选择付款信息" />
 
     <Button
         android:layout_width="wrap_content"

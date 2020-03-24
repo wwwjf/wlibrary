@@ -31,4 +31,14 @@ dependencies {
     implementation project(':wcommonlibrary')
     implementation project(path: ':stepprogresslibrary')
     implementation project(path: ':pickerlibrary')
+
+    //RxJava2
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+
+    implementation project(path: ':mvplibrary')
 }
